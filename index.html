@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+    <head>
+        <title data-ng-bind="$state.current.data.pageTitle"></title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" /></head>
+
+        <!-- Bootstrap -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+
+    <!-- START BODY -->
+    <body ng-controller="AppController">
+        
+        <div ui-view class="fade-in-up" style="clear: both;overflow: hidden;">
+            
+        </div>
+
+        <script src="assets/scripts/angular.min.js"></script>
+        <script src="assets/scripts/angular-ui-router.min.js"></script>
+        <script src="assets/scripts/ocLazyLoad.min.js"></script>
+        
+        <script src="assets/scripts/jquery.min.js"></script>
+        <script src="assets/scripts/bootstrap.min.js"></script>
+        
+        <script src="js/main/main.js"></script>
+        <!--路由-->
+        <script src="js/main/config.router.js"></script>
+        <!--自定义 directive/factory/fliter-->
+        <script src="js/main/customDirective.js"></script>
+        <script src="js/main/customFactory.js"></script>
+        <script src="js/main/customFilter.js"></script>
+
+        
+    </body>
+    <!-- END BODY -->
+
+</html>

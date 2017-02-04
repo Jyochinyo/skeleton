@@ -1,0 +1,173 @@
+<h1>过滤器</h1>
+<br/>
+<div class="pageStyle">
+<h4>所有字母大写</h4>
+{{uppercaseText | uppercase}}
+
+<h4>在JS中过滤所有字母小写</h4>
+{{lowercaseText}}
+
+<h4>限制小数点后的位数</h4>
+{{ 123.456789 | number:2 }}
+
+<h4>将一个数值格式化为货币格式</h4>
+{{ 123 | currency }}
+
+<h4>将日期格式化成需要的格式</h4>
+
+{{ clock.now | date:'medium' }} <!-- Aug 09, 2013 12:09:02 PM --> 
+<br/>
+{{ clock.now | date:'short' }} <!-- 8/9/1312:09PM -->
+<br/>
+{{ clock.now | date:'fullDate' }} <!-- Thursday, August 09, 2013 -->
+<br/> 
+{{ clock.now | date:'longDate' }} <!-- August 09, 2013 -->
+<br/>
+{{ clock.now | date:'mediumDate' }}<!-- Aug 09, 2013 -->
+<br/> 
+{{ clock.now | date:'shortDate' }} <!-- 8/9/13 -->
+<br/>
+{{ clock.now | date:'mediumTime' }}<!-- 12:09:02 PM -->
+<br/> 
+{{ clock.now | date:'shortTime' }} <!-- 12:09 PM -->
+<br/>
+
+<h4>对年份进行格式化</h4>
+{{ clock.now | date:'yyyy' }} <!-- 2013 -->
+<br/>
+{{ clock.now | date:'yy' }} <!-- 13 -->
+<br/>
+{{ clock.now | date:'y' }} <!-- 2013 -->
+<br/>
+
+<h4>对月份进行格式化</h4>
+{{ clock.now | date:'MMMM' }} <!-- August -->
+<br/>
+{{ clock.now | date:'MMM' }} <!-- Aug -->
+<br/>
+{{ clock.now | date:'MM' }} <!-- 08 -->
+<br/>
+{{ clock.now | date:'M' }} <!-- 8 -->
+<br/>
+
+<h4>对日期进行格式化</h4>
+{{ clock.now |date:'dd' }} <!-- 09 -->
+<br/>
+{{ clock.now | date:'d' }} <!-- 9 -->
+<br/>
+{{ clock.now | date:'EEEE' }} <!-- Thursday -->
+<br/>
+{{ clock.now | date:'EEE' }} <!-- Thu -->
+<br/>
+
+<h4>对小时进行格式化</h4>
+{{clock.now | date:'HH'}} <!--00-->
+<br/>
+{{clock.now | date:'H'}} <!--0-->
+<br/>
+{{clock.now | date:'hh'}} <!--12-->
+<br/>
+{{clock.now | date:'h'}} <!--12-->
+<br/>
+
+<h4>对分钟进行格式化</h4>
+{{ clock.now  | date:'mm' }} <!-- 09 -->
+<br/>
+{{ clock.now  | date:'m' }} <!-- 9 -->
+<br/>
+
+<h4>对秒进行格式化</h4>
+{{ clock.now | date:'ss' }} <!-- 02 -->
+<br/>
+{{ clock.now | date:'s' }} <!-- 2 -->
+<br/>
+{{ clock.now | date:'.sss' }} <!-- .995 -->
+<br/>
+
+<h4>对字符进行格式化</h4>
+{{ clock.now | date:'a' }} <!-- AM -->
+<br/>
+四位时区标识:
+{{ clock.now | date:'Z' }} <!--- 0700 -->
+<br/>
+
+<h4>自定义日期格式的示例</h4>
+{{ clock.now | date:'MMMd, y' }} <!-- Aug9, 2013 -->
+<br/>
+{{ clock.now | date:'EEEE, d, M' }} <!-- Thursday, 9, 8-->
+<br/>
+{{ clock.now | date:'hh:mm:ss.sss' }} <!-- 12:09:02.995 -->
+<br/>
+
+<h4>函数过滤</h4>
+
+<h5>过滤出数组中含有e的元素</h5>
+{{ ['Ari','Lerner','Likes','To','Eat','Pizza'] | filter:'e' }}
+<!-- ["Lerner","Likes","Eat"] -->
+
+<h5>根据字典中的某一个字段进行过滤</h5>
+{{ [{
+    'name': 'Ari',
+    'City': 'San Francisco',
+    'favorite food': 'Pizza'
+    },{
+    'name': 'Nate',
+    'City': 'San Francisco',
+    'favorite food': 'indian food'
+    }] | filter:{'favorite food': 'Pizza'} }}
+<!-- [{"name":"Ari","City":"SanFrancisco","favoritefood":"Pizza"}] -->
+
+<h5>在JS中通过方法进行过滤</h5>
+{{ ['Ari','likes','to','travel'] | filter:isCapitalized }}
+<!-- ["Ari"] -->
+
+<h4>json</h4>
+<h5>json过滤器可以将一个JSON JavaScript对象转换成字符串,便于调试</h5>
+{{ {'name': 'Ari', 'City': 'SanFrancisco'} | json }}
+<!-- {
+ "name": "Ari",
+ "City": "San Francisco"
+} -->
+<h4>limitTo</h4>
+<h5>截取字符串的前三个字</h5>
+{{ "San Francisco is very cloudy" | limitTo:3 }}
+<h5>截取字符串的后六个字</h5>
+{{ "San Francisco is very cloudy" | limitTo:-6 }}
+<h5>截取数组中的第一个元素</h5>
+{{ ['a','b','c','d','e','f'] | limitTo:1 }}
+
+<h4>number</h4>
+<h5>千位符号,如果传入了一个非数字字符,会返回空字符串</h5>
+{{ 123456789 | number }}
+<!-- 1,234,567,890 -->
+
+<h4>orderBy</h4>
+<h5>对象数组用name字段进行排序</h5>
+ {{ [{
+    'name': 'Ari',
+    'status': 'awake'
+    },{
+    'name': 'Q',
+    'status': 'sleeping'
+    },{
+    'name': 'Nate',
+    'status': 'awake'
+    }] | orderBy:'name' }}
+
+<h5>将第二个参数设置为true可以将排序结果进行反转</h5>
+ {{ [{
+    'name': 'Ari',
+    'status': 'awake'
+    },{
+    'name': 'Q',
+    'status': 'sleeping'
+    },{
+    'name': 'Nate',
+    'status': 'awake'
+    }] | orderBy:'name' : true }}
+
+<h4>自定义过滤器</h4>
+<h5>将一句话的首字母转换成大写</h5>
+{{ "ginger loves dog treats" | lowercase | capitalize }}
+</div>
+<br/><br/><br/><br/><br/><br/>

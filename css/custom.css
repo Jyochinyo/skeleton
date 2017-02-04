@@ -1,0 +1,53 @@
+
+/*侧边栏 start*/
+.sidebar {
+    width: 15%;
+    margin-left: 20px;
+    float: left;
+    height: 100%;
+}
+
+.sidebarInside {
+    height: 30px;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-top: 4px;
+}
+
+.sidebarInside:hover {
+    color: rgb(96, 154, 205);
+    background-color: rgb(242, 246, 249);
+    text-decoration: none;
+}
+
+
+.sidebarA:hover, .sidebarA:focus {
+    color: rgb(96, 154, 205);
+    background-color: rgb(242, 246, 249);
+    text-decoration: none;
+}
+
+/*侧边栏 end*/
+
+
+/*主区域 start*/
+.mainContain {
+    float: left;
+    margin-left: 30px;
+    width: 80%;
+}
+/*主区域 end*/
+
+
+.pageStyle h4 {
+    color: red;
+}
+
+/*表单验证 input框样式 start*/
+input.ng-invalid {
+    border: 1px solid red;
+}
+input.ng-valid {
+    border: 1px solid green;
+}
+/*表单验证 input框样式 end*/
