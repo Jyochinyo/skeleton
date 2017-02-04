@@ -130,7 +130,7 @@ app
         .state('homePage.formCheck', {
             url: "/formCheck.html",
             templateUrl: "tpl/controllers/formCheck/formCheck.html",            
-            data: {pageTitle: '过滤器'},
+            data: {pageTitle: '表单验证'},
             controller: "formCheckController",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -138,6 +138,25 @@ app
                         name: 'myApp',
                         files: [
                         	'js/controllers/formCheck/formCheck.js'
+                        ] 
+                    });
+                }]
+            }
+        })
+
+        // 指令
+        // directive
+        .state('homePage.directive', {
+            url: "/directive.html",
+            templateUrl: "tpl/controllers/directive/directive.html",            
+            data: {pageTitle: '指令'},
+            controller: "directiveController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'myApp',
+                        files: [
+                        	'js/controllers/directive/directive.js'
                         ] 
                     });
                 }]
