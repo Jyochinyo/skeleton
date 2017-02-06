@@ -1,141 +1,93 @@
-<h1>表单验证</h1>
+<h1>指令</h1>
 
 <div class="pageStyle">
-    <h5>屏蔽浏览器对表单的默认验证行为，可以在表单元素上添加novalidate标记</h5>
+    <h4>指令的四种调用方法</h4>
+    <my-directive></my-directive> 
     <pre>
-    &lt;form name="form" novalidate>
-        &lt;label name="email">Your email&lt;/label&gt;
-        &lt;input type="email"
-                name="email"
-                ng-model="email" placeholder="Email Address" /&gt;
-    &lt;/form&gt;
+        E: 元素调用
+        &lt;my-directive&gt;&lt;/my-directive&gt;</pre>
+    <div my-directive></div>
+    <pre>
+        A: 属性调用
+        &lt;div class="my-directive"&gt;&lt;/div&gt;</pre>
+    <div class="my-directive"></div>
+    <pre>
+        C: 类调用
+        &lt;div class="my-directive"&gt;&lt;/div&gt;</pre>
+    <!--directive:my-directive-->
+    <pre>
+        M: 注释调用
+        &lt;!--directive:my-directive--&gt;</pre>
+
+    <h4>绑定策略</h4>
+    <div my-directive-bind
+         my-url="http://www.baidu.com"
+         my-link-text="Click me to go to baidu">
+    </div>
+
+    <pre>
+        &lt;div my-directive
+            my-url="http://www.baidu.com"
+            mylinktext="Click me to go to baidu"
+        &lt;/div&gt;
+
+        angular.module('myApp', [])
+        .directive('myDirective', function() {
+            return {
+                restrict: 'A',
+                replace: true,
+                scope: {
+                    myUrl: '@',
+                    myLinkText: '@'
+                },
+                template: '&lt;a href="{ {myUrl} }"&gt;' + '{ {myLinkText} }&lt;/a&gt;'
+                }; 
+        });</pre>
+
+    <h4>基础ng属性指令</h4>
+    <pre>
+        布尔属性
+        ng-disabled
+        ng-readonly
+        ng-checked
+        ng-selected</pre>
+    <pre>
+        类布尔属性
+        ng-href
+        ng-src</pre>
+
+    <h4>在指令中使用子作用域</h4>
+    <pre>
+        ng-include
+        ng-switch
+        ng-repeat
+        ng-view
+        ng-controller
+        ng-if</pre>
+
+    <h4>常用实用ng指令(在之前项目较少用到,在此整理一下)</h4>
+    <pre>
+        ng-cloak
+
+        除了使用ng-bind来避免未渲染元素闪烁,还可以在含有{{ }}的元素上使用ng-cloak指令:
+        示例:
+        &lt;p ng-cloak&gt;{ { greeting } }&lt;/p&gt;
+            &lt;body ng-init="greeting='HelloWorld'"&gt;
+        &lt;/body&gt;
+        ----------------------
+        ng-bind-template
+
+        同ng-bind指令类似，ng-bind-template用来在视图中绑定多个表达式。
+        示例:
+        &lt;div ng-bind-template="{ {message} }{ {name} }"&gt;
+        &lt;/div&gt;
+        ----------------------
+        ng-form
+
+        ng-form用来在一个表单内部嵌套另一个表单.普通的HTML &lt;form&gt;标签不允许嵌套，但ng-form可以.
     </pre>
 
-    <h4>必填项</h4>
-    <h5>证某个表单输入是否已填写，只要在输入字段元素上添加HTML5添加required即可</h5>
-    <pre>
-        &lt;input type="text" required /&gt;
-    </pre>
 
-    <h4>最小长度</h4>
-    <h5>验证单输入的文本长度是否大于某个最小值，在输入字段上使用AngularJS指令ng-minleng="{number}":</h5>
-    <pre>
-        &lt;input type="text" ng-minlength="5" /&gt;
-    </pre>
-
-    <h4>最大长度</h4>
-    <h5>验证单输入的文本长度是否小于或等于某个最大值，在输入字段上使用AngularJS指令ng-maxlength="{number}":</h5>
-    <pre>
-        &lt;input type="text" ng-maxlength="20" /&gt;
-    </pre>
-
-    <h4>模式匹配</h4>
-    <h5>使用ng-pattern="/PATTERN/"来确保输入能够匹配指定的正则表达式</h5>
-    <pre>
-        &lt;input type="text" ng-pattern="[a-zA-Z]" /&gt;
-    </pre>
-
-    <h4>电子邮件/数字/URL</h4>
-    <h5>验证输入内容是否为电子邮件/数字/URL</h5>
-    <pre>
-        &lt;input type="email" name="email" ng-model="user.email" /&gt;
-        &lt;input type="number" name="age" ng-model="user.age" /&gt;
-        &lt;input type="url" name="homepage" ng-model="user.facebook_url" /&gt;
-    </pre>
-
-    <h4>表单中的变量控制</h4>
-    <pre>
-        未修改的表单
-        formName.inputFieldName.$pristine
-
-        修改过的表单
-        formName.inputFieldName.$dirty
-
-        当前表单的内容是合法的,下面的属性为true
-        formName.inputFieldName.$valid
-
-        当前表单的内容是不合法的,下面的属性为true
-        formName.inputFieldName.$invalid
-
-        包含当前表单的所有验证内容,以及它们是否合法的信息 
-        formName.inputfieldName.$error
-        如果验证失败,这个属性的值为true,如果值为false,说明输入字段的值通过了验证
-    </pre>
-
-    <h4 style="margin-top: 40px;">示例1</h4>
-
-    <form class="form-horizontal" style="margin-top: 40px;margin-left: -90px" name="myForm">
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email"
-                       class="form-control"
-                       id="inputEmail3"
-                       placeholder="Email"
-                       name="myEmail"
-                       ng-model="myEmail">
-            </div>
-            <label for="inputEmail3" class="col-sm-4 control-label">
-                未修改的表单$pristine: {{myForm.myEmail.$pristine}}
-            </label>
-            <label for="inputEmail3" class="col-sm-4 control-label">
-                修改过的表单$dirty: {{myForm.myEmail.$dirty}}
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password"
-                       class="form-control"
-                       id="inputPassword3"
-                       placeholder="Password"
-                       name="myPassword"
-                       ng-model="myPassword">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
-        </div>
-    </form>
-
-    <h4 style="margin-top: 40px;">示例2</h4>
-    <form name="signup_form" novalidateng-submit="signupForm()"> 
-        <fieldset>
-            <!--fieldset 组合表单中的相关元素-->
-            <legend>Signup</legend>
-            <div class="row">
-                <div class="large-12 columns">
-                    <label>Your name</label>
-                    <input type="text"
-                        placeholder="Name"
-                        name="name"
-                        ng-model="signup.name"
-                        ng-minlength="3"
-                        ng-maxlength="20" required />
-                    <div class="error" ng-show="signup_form.name.$dirty && signup_form.name.$invalid">
-                        <small class="error" 
-                               ng-show="signup_form.name.$error.required">
-                               Your name is required.</small>
-                        <small class="error" 
-                               ng-show="signup_form.name.$error.minlength">
-                               Your name is required to be at least 3 characters</small>
-                        <small class="error"
-                               ng-show="signup_form.name.$error.maxlength">
-                               Your name cannot be longer than 20 characters</small>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="button radius">Submit</button> 
-        </fieldset>
-    </form>
-    
-
-    <h4 style="margin-top: 40px;">指令验证</h4>
-    <pre>详见&lt;angularJS&gt;权威教程</pre>
-    <h4>ngMessages</h4>
-    <pre>详见&lt;angularJS&gt;权威教程</pre>
 </div>
 
 <br/><br/><br/><br/><br/><br/>

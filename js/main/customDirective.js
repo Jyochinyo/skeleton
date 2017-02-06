@@ -1,13 +1,23 @@
 
 app
-    .directive('testDirective', function () {
-        return { 
-            restrict: "EA",
-            templateUrl: 'tpl/directives/testDirective.html',
+    // 基本指令
+    .directive('myDirective', function() {
+        return {
+            restrict: 'EACM', 
+            template: '<a href="http://www.baidu.com">Click me to go to baidu</a>'
+        }; 
+    })
+
+    // 绑定策略指令示例
+    .directive('myDirectiveBind', function() {
+        return {
+            restrict: 'EACM', 
             replace: true,
-            controller: function($scope,$http,$state,$timeout){
-                $scope.directiveTitle = "我是一条指令";
-            }
-        }
+            scope: {
+                myUrl: '@',
+                myLinkText: '@'
+            },
+            template: '<a href="{{myUrl}}">' + '{{myLinkText}}</a>'
+        }; 
     });
 
