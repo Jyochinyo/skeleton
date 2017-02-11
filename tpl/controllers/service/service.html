@@ -1,0 +1,56 @@
+<h1>服务</h1>
+<br/>
+<div class="pageStyle">
+
+    <h4>服务一共有物种</h4>
+    <pre>
+        factory()
+        service()
+        constant()
+        value()
+        provider()</pre>
+
+    <h4>provider</h4>
+    <pre>
+        // 使用`.provider`注册该服务      
+        angular.module('myApp', []) 
+        .provider('githubService', function($http) {
+            // 默认的,私有状态     
+            var githubUrl = 'https://github.com'
+            setGithubUrl: function(url) {
+            // 通过.config改变默认属性      
+            if (url) { githubUrl = url }
+            },
+            method: JSONP,//如果需要可以重写          
+            $get: function($http) {
+                self = this;
+                return $http({ method: self.method, url: githubUrl + '/events'});
+            }
+        });
+
+        angular.module('myApp', [])
+        .config(function(githubServiceProvider) {
+            githubServiceProvider.setGithubUrl("git@github.com");
+        });
+
+        通过上面的代码可以看的出provider比factory更具灵活性,在实际开发中可以灵活使用
+    </pre>
+
+    <h4>constant</h4>
+    <pre>
+        我理解的constant,是可以用来储存一些常亮的,也可以给这一些常量默认值
+        
+        angular.module('myApp') .constant('apiKey','123123123')
+        这个常量服务可以像其他服务一样被注入到配置函数中
+        console.log("look here",apiKey);
+        apiKey = 234;
+        console.log("look here again",apiKey);</pre>
+
+    <h4>value</h4>
+    <pre>
+    value()方法和constant()方法之间最大要的区别是，常量可以注入到配置函数中，而值不行。
+    通常情况下，可以通过value()来注册服务对象或函数，用constant()来配置数据。</pre>
+
+      
+</div>
+<br/><br/><br/><br/><br/><br/>

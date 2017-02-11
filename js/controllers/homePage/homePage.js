@@ -26,6 +26,8 @@ app.controller('SidebarController', function ($rootScope, $scope, $http, $timeou
             $state.go('homePage.formCheck');
         } else if (tag == 5) {
             $state.go('homePage.directive');
+        } else if (tag == 6) {
+            $state.go('homePage.service');
         }
         
     };

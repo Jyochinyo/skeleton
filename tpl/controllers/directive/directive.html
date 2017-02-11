@@ -87,6 +87,141 @@
         ng-form用来在一个表单内部嵌套另一个表单.普通的HTML &lt;form&gt;标签不允许嵌套，但ng-form可以.
     </pre>
 
+    <div class="bs-example">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>产线分公司</th>
+                    <th>专员代码</th>
+                    <th>专员名称</th>
+                    <th>P09工号</th>
+                    <th>P09名称</th>
+                    <th>团队代码</th>
+                    <th>团队名称</th>
+                    <th>对应关系</th>
+                    <th>产险中支</th>
+                    <th>寿险中支</th>
+                    <th>职场</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="x in testArr track by $index">
+                    <!--产线分公司-->
+                    <td>
+                        <p data-ng-repeat="y in x.company track by $index">{{y}}</p>
+                    </td>
+                    <!--专员代码-->
+                    <td>
+                        <p data-ng-repeat="y in x.code track by $index">{{y}}</p>
+                    </td>
+                    <!--专员名称-->
+                    <td>
+                        <p data-ng-repeat="y in x.name track by $index">{{y}}</p>
+                    </td>
+                    <!--P09工号-->
+                    <td>
+                        <p data-ng-repeat="y in x.p09no track by $index">{{y}}</p>
+                    </td>
+                    <!--P09名称-->
+                    <td>
+                        <p data-ng-repeat="y in x.p09name track by $index">{{y}}</p>
+                    </td>
+                    <!--团队代码-->
+                    <td>
+                        <p data-ng-repeat="y in x.tramCode track by $index">{{y}}</p>
+                    </td>
+                    <!--团队名称-->
+                    <td>
+                        <p data-ng-repeat="y in x.teamName track by $index">{{y}}</p>
+                    </td>
+                    <!--对应关系-->
+                    <td>
+                        <p data-ng-repeat="y in x.ship track by $index">{{y}}</p>
+                    </td>
+                    <!--产险中支-->
+                    <td>
+                        <p data-ng-repeat="y in x.chanxian track by $index">{{y}}</p>
+                    </td>
+                    <!--寿险中支-->
+                    <td>
+                        <p data-ng-repeat="y in x.shouxian track by $index">{{y}}</p>
+                    </td>
+                    <!--职场-->
+                    <td>
+                        <p data-ng-repeat="y in x.area track by $index">{{y}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>产线分公司</th>
+                    <th>专员代码</th>
+                    <th>专员名称</th>
+                    <th>P09工号</th>
+                    <th>P09名称</th>
+                    <th>团队代码</th>
+                    <th>团队名称</th>
+                    <th>对应关系</th>
+                    <th>产险中支</th>
+                    <th>寿险中支</th>
+                    <th>职场</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="x in testList track by $index">
+                    <!--产线分公司-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.deptgrpName}}</p>
+                    </td>
+                    <!--专员代码-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.salerCode}}</p>
+                    </td>
+                    <!--专员名称-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.salerName}}</p>
+                    </td>
+                    <!--P09工号-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.p09Code}}</p>
+                    </td>
+                    <!--P09名称-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.p09Name}}</p>
+                    </td>
+                    <!--团队代码-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.teamCode}}</p>
+                    </td>
+                    <!--团队名称-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.teamName}}</p>
+                    </td>
+                    <!--对应关系-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.salerWorkspaceShip}}</p>
+                    </td>
+                    <!--产险中支-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersBases track by $index">{{y.status}}</p>
+                    </td>
+                    <!--寿险中支-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersWorkplaces track by $index">{{y.lifeDeptgrpName}}</p>
+                    </td>
+                    <!--职场-->
+                    <td>
+                        <p data-ng-repeat="y in x.salersWorkplaces track by $index">{{y.lifeWorkplaceName}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
 
 </div>
 

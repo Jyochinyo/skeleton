@@ -5,3 +5,6 @@ app.factory('customService',['$http', function ($http) {
             }
         }
 }]);
+
+
+app.constant('apiKey','123123123');

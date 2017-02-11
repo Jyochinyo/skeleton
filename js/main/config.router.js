@@ -163,6 +163,25 @@ app
             }
         })
 
+        // 服务
+        // directive
+        .state('homePage.service', {
+            url: "/service.html",
+            templateUrl: "tpl/controllers/service/service.html",            
+            data: {pageTitle: '服务'},
+            controller: "serviceController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'myApp',
+                        files: [
+                        	'js/controllers/service/service.js'
+                        ] 
+                    });
+                }]
+            }
+        })
+
 }]);
 
 app.run(
