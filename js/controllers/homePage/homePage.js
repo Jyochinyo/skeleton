@@ -28,6 +28,8 @@ app.controller('SidebarController', function ($rootScope, $scope, $http, $timeou
             $state.go('homePage.directive');
         } else if (tag == 6) {
             $state.go('homePage.service');
+        } else if (tag == 7) {
+            $state.go('homePage.playGround');
         }
         
     };

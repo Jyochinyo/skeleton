@@ -182,6 +182,25 @@ app
             }
         })
 
+        // 游乐园
+        // playGround
+        .state('homePage.playGround', {
+            url: "/playGround.html",
+            templateUrl: "tpl/controllers/playGround/playGround.html",            
+            data: {pageTitle: '游乐园'},
+            controller: "playGroundController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'myApp',
+                        files: [
+                        	'js/controllers/playGround/playGround.js'
+                        ] 
+                    });
+                }]
+            }
+        })
+
 }]);
 
 app.run(
